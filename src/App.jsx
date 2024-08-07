@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "../src/globals.css";
 
 
@@ -28,10 +29,41 @@ export default function App() {
             preco: "R$ 8,99"
         },
     ]);
+    const [listaPedidos, setPedidos] = useState([]);
+
+    const adicionarProdutoPedido = (objeto) => {
+        setProdutos([...listaPedidos, objeto]);
+    }
+    console.table(listaPedidos);
+
+    const removerItem = (id) => {
+        let remover = false;
+        let listaAux = listaPedidos.filter((produto)=>
+           {
+            if(pedido.id == id){
+                return null
+            }else{
+                return remover;
+            }
+           }
+        )};
+        
+        setProdutos(listaAux);
+        
 
     return (
-       <div>
-
-       </div>
+    <div className="bloco-principal" >
+        <div className="bloco-produtos" >
+            {
+                listaProdutos.map((produto)=>
+                <div key={produto.id}>
+                    <img src={produto.imagem}/>
+                    <p> {produto.item} </p>
+                    <button onClick={() => adicionarProdutoPedido(produto)}>Adicionar ao Carrinho</button>
+                    
+                    </div>
+                )}
+        </div>
+    </div>
     );
 }
